@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hostinger / Zeabur / Render 2026 平台比較報表</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #111933;
+      --panel-2: #0f1730;
+      --text: #e8eefc;
+      --muted: #aab6d3;
+      --accent: #7dd3fc;
+      --accent-2: #a78bfa;
+      --line: rgba(255,255,255,0.10);
+      --good: #4ade80;
+      --warn: #fbbf24;
+      --bad: #fb7185;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% 0%, #18264a 0%, var(--bg) 48%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .wrap { max-width: 1320px; margin: 0 auto; padding: 32px 20px 60px; }
+    .hero {
+      background: linear-gradient(135deg, rgba(125,211,252,0.10), rgba(167,139,250,0.10));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      margin-bottom: 24px;
+    }
+    h1 { margin: 0 0 8px; font-size: 2rem; }
+    .meta { color: var(--muted); font-size: 0.95rem; }
+    .note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-left: 4px solid var(--accent);
+      background: rgba(125,211,252,0.08);
+      color: var(--text);
+      border-radius: 10px;
+    }
+    .grid { display: grid; gap: 18px; }
+    .two { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    @media (max-width: 1100px) {
+      .two, .three { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    h2 { font-size: 1.35rem; margin: 0 0 12px; }
+    h3 { font-size: 1.05rem; margin: 18px 0 10px; color: var(--accent); }
+    .tag {
+      display: inline-block; padding: 4px 10px; border-radius: 999px;
+      background: rgba(167,139,250,0.16); border: 1px solid rgba(167,139,250,0.24);
+      color: #ddd6fe; font-size: 0.86rem; margin-right: 8px; margin-bottom: 8px;
+    }
+    table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 14px; }
+    thead th {
+      text-align: left; background: rgba(255,255,255,0.05); color: #f8fbff;
+      font-size: 0.92rem; padding: 12px 12px; border-bottom: 1px solid var(--line);
+      vertical-align: bottom;
+    }
+    tbody td {
+      vertical-align: top; padding: 12px; border-bottom: 1px solid var(--line); color: var(--text);
+    }
+    tbody tr:hover { background: rgba(255,255,255,0.02); }
+    ul { margin: 8px 0 0 1.2rem; padding: 0; }
+    li { margin: 6px 0; }
+    .muted { color: var(--muted); }
+    .good { color: var(--good); }
+    .warn { color: var(--warn); }
+    .bad { color: var(--bad); }
+    .sources a { color: var(--accent); text-decoration: none; }
+    .sources a:hover { text-decoration: underline; }
+    .pill-row { margin-top: 8px; }
+    .footer { margin-top: 26px; color: var(--muted); font-size: 0.9rem; }
+    .small { font-size: 0.92rem; }
+    .section-title { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .badge {
+      font-size: 0.85rem; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04); color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>Hostinger / Zeabur / Render 2026 平台比較報表</h1>
+      <div class="meta">資料擷取日期：2026-07-07 15:59:17 · 以官方頁面公開資訊為主</div>
+      <div class="note">
+        <strong>重點結論：</strong>
+        Hostinger 偏向「傳統網站/WordPress/建站新手」；Zeabur 偏向「開發者與 AI DevOps 自動化部署」；Render 偏向「現代雲端應用/PaaS/團隊級部署與治理」。
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>快速總覽</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 12%">平台</th>
+            <th style="width: 16%">價格概覽</th>
+            <th>主要優點</th>
+            <th>主要缺點</th>
+            <th style="width: 18%">最適合的客群 / 特性</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Hostinger</strong></td>
+            <td>
+              Web hosting 起價 <strong>$2.99/mo</strong>（Premium；續約約 <strong>$10.99/mo</strong>）<br>
+              Business <strong>$3.79/mo</strong>、Cloud Startup <strong>$7.99/mo</strong>；皆為長約預付攤提價。<br>
+              另有網站建立器、VPS、網域、商務信箱等產品。
+            </td>
+            <td>
+              <ul>
+                <li>入門門檻低，適合快速上線。</li>
+                <li>網站建構器 + WordPress 管理一體化。</li>
+                <li>價格相對親民，功能包套多。</li>
+                <li>適合中小型網站、部落格、形象站。</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>偏傳統主機思維，彈性與工程化程度不如 PaaS。</li>
+                <li>長期優惠價通常綁較長方案。</li>
+                <li>若是高頻部署或複雜微服務，管理感較重。</li>
+              </ul>
+            </td>
+            <td>新手、個人品牌、SMB、WordPress 使用者</td>
+          </tr>
+          <tr>
+            <td><strong>Zeabur</strong></td>
+            <td>
+              Free <strong>$0</strong><br>
+              Dev <strong>$5/mo</strong>（前 14 天免費）<br>
+              Pro <strong>$19/mo</strong>（前 14 天免費）<br>
+              Team <strong>$79/mo</strong>（含 3 席，額外每席 +$24）<br>
+              另有雲端伺服器／叢集費，官方示例可見區域雲主機價格自 <strong>$14 起</strong>。
+            </td>
+            <td>
+              <ul>
+                <li>AI DevOps / 自然語言輔助部署的體驗很強。</li>
+                <li>對模板、資料庫、DNS、郵件等整合友善。</li>
+                <li>費用模型固定、可預期，適合小團隊。</li>
+                <li>可管理自有伺服器，也能部署到雲端供應商。</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>相較傳統主機，生態與市場認知度較小。</li>
+                <li>若要更細的底層控制，仍不如純自管雲端。</li>
+                <li>Enterprise / 區域與雲廠商組合較需要額外評估。</li>
+              </ul>
+            </td>
+            <td>開發者、獨立創業者、AI/自動化專案、小型團隊</td>
+          </tr>
+          <tr>
+            <td><strong>Render</strong></td>
+            <td>
+              Hobby <strong>$0/mo</strong> + compute<br>
+              Pro <strong>$25/mo</strong> + compute<br>
+              Scale <strong>$499/mo</strong> + compute<br>
+              Enterprise 自訂<br>
+              Static Sites 為 <strong>$0/mo</strong>；Services 另有從 <strong>$0/mo</strong> 起的 compute 費用。
+            </td>
+            <td>
+              <ul>
+                <li>從 Git 連 repo 就能部署，流程簡潔。</li>
+                <li>支援 Web services、static sites、workers、cron、Postgres 等。</li>
+                <li>有私網、DDoS、防火牆、監控與稽核能力。</li>
+                <li>適合團隊級與生產環境的 PaaS。</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>計費結構較多元，compute 成本需仔細估算。</li>
+                <li>對極客製化網路/基礎架構控制，不如自建 IaaS。</li>
+                <li>高階治理能力多落在較高價方案。</li>
+              </ul>
+            </td>
+            <td>工程團隊、SaaS、AI app、需要治理與擴展性的產品</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid three" style="margin-top:18px;">
+      <div class="card">
+        <div class="section-title"><h2>Hostinger</h2><span class="badge">Website Hosting / Builder</span></div>
+        <div class="pill-row">
+          <span class="tag">Web hosting</span>
+          <span class="tag">WordPress</span>
+          <span class="tag">Website Builder</span>
+          <span class="tag">VPS</span>
+          <span class="tag">Domains</span>
+          <span class="tag">Business Email</span>
+        </div>
+        <h3>費用</h3>
+        <ul class="small">
+          <li>官方 pricing 頁顯示 Web hosting 起價 <strong>$2.99/月</strong>（長約期顯示）。</li>
+          <li>Premium 方案示例含：免費網域 1 年、免費 SSL、網站編輯器、每週自動備份等。</li>
+          <li>也有 Hostinger Horizons / AI 建站、VPS、網域與郵件等產品線。</li>
+        </ul>
+        <h3>架站方式</h3>
+        <ul class="small">
+          <li>用 <strong>拖拉式網站建構器</strong>。</li>
+          <li>直接 <strong>WordPress</strong> 建站與託管。</li>
+          <li>使用 <strong>Hostinger Horizons</strong>：用自然語言描述，AI 幫你做網站/網頁應用。</li>
+        </ul>
+        <h3>定位 / 特性</h3>
+        <ul class="small">
+          <li>強調「從想法到上線」快速、低技術門檻。</li>
+          <li>對個人站、品牌站、部落格、小電商很友善。</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="section-title"><h2>Zeabur</h2><span class="badge">AI DevOps / PaaS</span></div>
+        <div class="pill-row">
+          <span class="tag">Free / Dev / Pro / Team</span>
+          <span class="tag">AI Hub</span>
+          <span class="tag">Templates</span>
+          <span class="tag">DNS</span>
+          <span class="tag">Email</span>
+          <span class="tag">Private Server Mgmt</span>
+        </div>
+        <h3>費用</h3>
+        <ul class="small">
+          <li>Free：<strong>$0</strong>；Dev：<strong>$5/月</strong>（前 14 天免費）；Pro：<strong>$19/月</strong>（前 14 天免費）；Team：<strong>$79/月</strong>（3 席）。</li>
+          <li>官方標示若選擇其雲端伺服器，部分區域（例如 DigitalOcean）伺服器價格 <strong>$14 起</strong>，且需搭配付費方案。</li>
+        </ul>
+        <h3>架站方式</h3>
+        <ul class="small">
+          <li>可用 <strong>Zeabur Agent</strong> 自動偵測語言/框架。</li>
+          <li>可部署本機專案或模板，也有一鍵模板（WordPress、Supabase、Dify、LobeChat 等）。</li>
+          <li>支援 DNS、網域、郵件服務與 AI Hub 整合。</li>
+        </ul>
+        <h3>定位 / 特性</h3>
+        <ul class="small">
+          <li>主打「AI DevOps 工程師」與固定可預期成本。</li>
+          <li>適合喜歡自動化、模板化、想少管 DevOps 的開發者。</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="section-title"><h2>Render</h2><span class="badge">Modern PaaS / Cloud</span></div>
+        <div class="pill-row">
+          <span class="tag">Static Sites</span>
+          <span class="tag">Web Services</span>
+          <span class="tag">Workers</span>
+          <span class="tag">Cron Jobs</span>
+          <span class="tag">Postgres</span>
+          <span class="tag">Private Networking</span>
+        </div>
+        <h3>費用</h3>
+        <ul class="small">
+          <li>Hobby：<strong>$0/月</strong> + compute。</li>
+          <li>Pro：<strong>$25/月</strong> + compute。</li>
+          <li>Scale：<strong>$499/月</strong> + compute。</li>
+          <li>Static Sites：<strong>$0/月</strong>；Services：<strong>From $0/月</strong>；SSD：<strong>$0.25/GB/月</strong>。</li>
+        </ul>
+        <h3>架站方式</h3>
+        <ul class="small">
+          <li>把 Git repo 連上去，Render 自動部署。</li>
+          <li>支援 static sites、web services、private services、background workers、cron jobs、databases。</li>
+          <li>適合透過 YAML / 服務設定進行基礎設施描述。</li>
+        </ul>
+        <h3>定位 / 特性</h3>
+        <ul class="small">
+          <li>強調 production-grade、治理、私網、安全性與可擴展性。</li>
+          <li>適合 SaaS、AI 產品、工程團隊與需要 SSO / 稽核 / 合規的組織。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px;">
+      <h2>比較摘要：你該怎麼選？</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>情境</th>
+            <th>建議平台</th>
+            <th>原因</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>要快速做一個網站、名片站、部落格或 WordPress</td>
+            <td><strong>Hostinger</strong></td>
+            <td>建站體驗最直覺，價格入門低，傳統網站需求最完整。</td>
+          </tr>
+          <tr>
+            <td>你是開發者、想用自然語言/模板快速部署，且重視成本可預期</td>
+            <td><strong>Zeabur</strong></td>
+            <td>AI DevOps 與模板部署很強，對小團隊與自動化流程友善。</td>
+          </tr>
+          <tr>
+            <td>你要正式上線 SaaS / AI app，重視私網、監控、擴展、治理</td>
+            <td><strong>Render</strong></td>
+            <td>PaaS 能力較成熟，適合生產環境與團隊協作。</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="footer">
+        注意：價格、折扣、區域費率與方案內容會變動；正式採購前請以各平台官方價格頁與合約條款為準。
+      </div>
+    </div>
+
+    <div class="card sources" style="margin-top:18px;">
+      <h2>資料來源</h2>
+      <ul>
+        <li>Hostinger 首頁：<a href="https://www.hostinger.com/" target="_blank" rel="noreferrer">https://www.hostinger.com/</a></li>
+        <li>Hostinger Pricing：<a href="https://www.hostinger.com/pricing" target="_blank" rel="noreferrer">https://www.hostinger.com/pricing</a></li>
+        <li>Zeabur 首頁：<a href="https://zeabur.com/" target="_blank" rel="noreferrer">https://zeabur.com/</a></li>
+        <li>Zeabur Pricing：<a href="https://zeabur.com/pricing" target="_blank" rel="noreferrer">https://zeabur.com/pricing</a></li>
+        <li>Render 首頁：<a href="https://render.com/" target="_blank" rel="noreferrer">https://render.com/</a></li>
+        <li>Render Pricing：<a href="https://render.com/pricing" target="_blank" rel="noreferrer">https://render.com/pricing</a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
