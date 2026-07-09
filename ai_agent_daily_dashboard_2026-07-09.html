@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent 每日資訊看板</title>
+<style>
+  :root{
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --ink:#1a1f36;
+    --sub:#5b6478;
+    --line:#e6e9f2;
+    --brand1:#4f46e5;
+    --brand2:#0ea5e9;
+    --brand3:#f59e0b;
+    --accent-bg1:#eef2ff;
+    --accent-bg2:#e0f2fe;
+    --accent-bg3:#fef3c7;
+    --shadow:0 2px 8px rgba(26,31,54,0.06);
+    --shadow-hover:0 8px 24px rgba(26,31,54,0.10);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei",Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.5;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:32px 24px 64px;}
+
+  header.top{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:28px 32px;
+    background:linear-gradient(135deg,#4f46e5 0%,#0ea5e9 100%);
+    border-radius:20px;
+    color:#fff;
+    margin-bottom:28px;
+    box-shadow:var(--shadow);
+  }
+  header.top h1{
+    margin:0;
+    font-size:26px;
+    font-weight:800;
+    letter-spacing:0.5px;
+  }
+  header.top .sub{
+    font-size:13px;
+    opacity:0.9;
+    margin-top:4px;
+  }
+  header.top .date-badge{
+    background:rgba(255,255,255,0.18);
+    padding:10px 18px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:600;
+    white-space:nowrap;
+    backdrop-filter:blur(4px);
+  }
+
+  .search-bar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:10px 16px;
+    margin-bottom:28px;
+    box-shadow:var(--shadow);
+  }
+  .search-bar input{
+    flex:1;
+    border:none;
+    outline:none;
+    font-size:15px;
+    background:transparent;
+    color:var(--ink);
+  }
+  .search-bar input::placeholder{color:#9aa2b8;}
+  .search-bar .icon{font-size:16px;color:#9aa2b8;}
+  .count-tag{
+    font-size:12px;
+    color:var(--sub);
+    padding:4px 10px;
+    background:var(--bg);
+    border-radius:999px;
+  }
+
+  section.block{margin-bottom:34px;}
+  .block-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .block-head .dot{
+    width:10px;height:10px;border-radius:50%;
+  }
+  .block-head h2{
+    font-size:19px;
+    margin:0;
+    font-weight:700;
+  }
+  .block-head .n{
+    font-size:12px;
+    color:var(--sub);
+    background:var(--bg);
+    padding:2px 10px;
+    border-radius:999px;
+    border:1px solid var(--line);
+  }
+
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:16px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:18px 20px;
+    box-shadow:var(--shadow);
+    transition:transform .15s ease, box-shadow .15s ease;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .card:hover{
+    transform:translateY(-3px);
+    box-shadow:var(--shadow-hover);
+  }
+  .card .meta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .card .source{
+    font-size:12px;
+    font-weight:700;
+    padding:3px 10px;
+    border-radius:999px;
+  }
+  .card .date{
+    font-size:12px;
+    color:var(--sub);
+    font-variant-numeric:tabular-nums;
+  }
+  .card h3{
+    margin:0;
+    font-size:16px;
+    font-weight:700;
+    line-height:1.4;
+  }
+  .card h3 a{
+    color:var(--ink);
+    text-decoration:none;
+  }
+  .card h3 a:hover{
+    color:var(--brand1);
+    text-decoration:underline;
+  }
+  .card p{
+    margin:0;
+    font-size:13.5px;
+    color:var(--sub);
+  }
+
+  .block1 .source{background:var(--accent-bg1);color:var(--brand1);}
+  .block2 .source{background:var(--accent-bg2);color:#0369a1;}
+  .block3 .source{background:var(--accent-bg3);color:#b45309;}
+
+  .block1 .block-head .dot{background:var(--brand1);}
+  .block2 .block-head .dot{background:var(--brand2);}
+  .block3 .block-head .dot{background:var(--brand3);}
+
+  .empty{
+    padding:32px;
+    text-align:center;
+    color:var(--sub);
+    background:var(--card);
+    border:1px dashed var(--line);
+    border-radius:16px;
+    font-size:14px;
+  }
+
+  footer{
+    text-align:center;
+    font-size:12px;
+    color:#9aa2b8;
+    margin-top:20px;
+  }
+
+  @media (max-width:600px){
+    header.top{flex-direction:column;align-items:flex-start;}
+    .wrap{padding:20px 14px 48px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <h1>AI Agent 每日資訊看板</h1>
+      <div class="sub">彙整過去 7 天內 AI Agent 相關最新動態</div>
+    </div>
+    <div class="date-badge">資料更新日期：2026-07-09</div>
+  </header>
+
+  <div class="search-bar">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="搜尋標題、來源或摘要關鍵字…">
+    <span class="count-tag" id="countTag">共 14 則</span>
+  </div>
+
+  <section class="block block1">
+    <div class="block-head">
+      <span class="dot"></span>
+      <h2>各家推出的技術更新</h2>
+      <span class="n">OpenAI・Google Gemini・Claude・Openclaw</span>
+    </div>
+    <div class="cards" id="block1"></div>
+  </section>
+
+  <section class="block block2">
+    <div class="block-head">
+      <span class="dot"></span>
+      <h2>各媒體的試用心得</h2>
+      <span class="n">媒體 / YouTuber 教學與技巧</span>
+    </div>
+    <div class="cards" id="block2"></div>
+  </section>
+
+  <section class="block block3">
+    <div class="block-head">
+      <span class="dot"></span>
+      <h2>新產品的介紹</h2>
+      <span class="n">新工具、新應用、安裝技巧</span>
+    </div>
+    <div class="cards" id="block3"></div>
+  </section>
+
+  <footer>由排程任務自動產生・下次更新：每日早上 7:30</footer>
+</div>
+
+<script>
+const DATA = {
+  block1: [
+    {title:"OpenAI發布GPT-5.6模型系列（Sol、Terra、Luna）", source:"Dataconomy / Nextgov", date:"2026-07-09", summary:"OpenAI正式對外開放GPT-5.6三款模型，新增最大推理強度與Ultra模式，可調度子代理加速複雜任務處理。", url:"https://dataconomy.com/2026/07/08/openai-gpt-5-6-launch-july-9/"},
+    {title:"OpenAI推出GPT-Live全雙工語音模型", source:"TechCrunch", date:"2026-07-08", summary:"OpenAI以GPT-Live取代原本的ChatGPT語音功能，採全雙工架構讓AI可同時聆聽與說話，支援自然打斷與即時翻譯。", url:"https://techcrunch.com/2026/07/08/openai-releases-new-voice-models-for-more-natural-live-conversations/"},
+    {title:"Anthropic將Claude Cowork擴展至網頁與手機", source:"TechCrunch", date:"2026-07-07", summary:"Claude Cowork新增網頁版與iOS/Android版，支援遠端背景執行任務、跨裝置同步檔案，優先開放給Max方案用戶。", url:"https://techcrunch.com/2026/07/07/the-coding-agent-wars-are-spilling-into-the-rest-of-the-office-claude-cowork/"},
+    {title:"OpenClaw推出重大版本更新，支援GPT-5.6並強化工作流程", source:"36Kr", date:"2026-07-05（約）", summary:"OpenClaw新增GPT-5.6模型支援、外部harness附加功能、Telegram Codex配對操控，以及可插拔的AI記憶體架構。", url:"https://eu.36kr.com/en/p/3715160552878469"}
+  ],
+  block2: [
+    {title:"OpenAI推出GPT-Live全雙工語音模式", source:"MacRumors／TechCrunch", date:"2026-07-08", summary:"ChatGPT新語音模式可即時插話、同步聆聽與回應，體驗更接近真人對話，免費用戶也能使用精簡版。", url:"https://www.macrumors.com/2026/07/08/openai-gpt-live-voice/"},
+    {title:"GPT-5.6三款新模型（Sol／Terra／Luna）全面開放", source:"techmymoney.com", date:"2026-07-08", summary:"OpenAI擴大釋出GPT-5.6系列，Sol主打進階推理與長時間agent任務，適合需要複雜工作流的使用者。", url:"https://techmymoney.com/2026/07/08/openai-gpt-56-public-rollout-july-9-sol-terra-luna/"},
+    {title:"Google更新Gemini代理平台：背景執行與遠端MCP", source:"NxCode", date:"2026-07-08", summary:"Gemini新增背景任務執行、遠端MCP工具串接功能，讓開發者打造能長時間自主運作的AI agent更容易上手。", url:"https://www.nxcode.io/resources/news/gemini-managed-agents-background-remote-mcp-production-guide-2026"},
+    {title:"Claude Cowork正式登陸手機與網頁版", source:"9to5Mac／Anthropic官方部落格", date:"2026-07-07", summary:"Anthropic的AI代理工具Cowork不再限於桌面，用戶可用手機啟動、追蹤並接續任務，進度隨裝置同步。", url:"https://9to5mac.com/2026/07/07/anthropic-expanding-claude-cowork-to-mobile-and-web-details-here/"},
+    {title:"一週AI代理新聞摘要：程式碼代理與瀏覽器自動化興起", source:"AI Agents Directory", date:"2026-07-05", summary:"彙整本週AI agent動態，包括Claude Code、Cursor可直接存取企業CRM資料，及瀏覽器正演變為AI代理入口。", url:"https://aiagentsdirectory.com/news/ai-agents-directory-daily-brief-july-5-2026"}
+  ],
+  block3: [
+    {title:"Hermes Agent v0.18.2 更新上線，修復多項問題", source:"GitHub (NousResearch)", date:"2026-07-07", summary:"開源AI代理Hermes Agent推出0.18.2修補版，延續7月初「Judgment Release」大更新後的穩定性優化，強化多代理協作能力。", url:"https://github.com/NousResearch/hermes-agent/releases/tag/v2026.7.7.2"},
+    {title:"Z.ai推出免費開源AI程式設計代理ZCode", source:"VentureBeat", date:"2026-07-02", summary:"中國Z.ai公司免費推出桌面版程式設計代理ZCode，搭載自家GLM-5.2模型，價格低於Cursor與Claude Code。", url:"https://venturebeat.com/technology/z-ai-launches-zcode-to-challenge-cursor-claude-code-and-github-copilot-in-ai-coding"},
+    {title:"Meta悄悄推出Pocket，用文字生成AI小遊戲", source:"TechCrunch", date:"2026-07-02", summary:"只要輸入文字提示，就能用AI生成可互動的迷你遊戲並分享給朋友玩，操作簡單免寫程式，適合完全的新手嘗試。", url:"https://techcrunch.com/2026/07/02/meta-quietly-launches-vibe-coded-gaming-app-pocket/"},
+    {title:"行銷新創Profound推出常駐背景代理Aim", source:"Adweek", date:"2026-07-02", summary:"Profound發表全天候背景代理Aim，能自動分析AI搜尋數據、找出商機並生成待辦任務清單，協助行銷團隊排定優先順序。", url:"https://www.adweek.com/media/profound-launches-an-ai-agent-to-manage-end-to-end-marketing/"},
+    {title:"Hermes Agent新手安裝教學懶人包", source:"TechJackSolutions", date:"2026-07（約，持續更新）", summary:"針對近期爆紅的開源代理Hermes Agent，提供一鍵安裝步驟教學，15至30分鐘內完成設定並串接Telegram、Discord等通訊平台。", url:"https://techjacksolutions.com/ai-tools/hermes/hermes-setup-guide/"}
+  ]
+};
+
+function renderBlock(id){
+  const el = document.getElementById(id);
+  const items = DATA[id];
+  if(!items || items.length === 0){
+    el.parentElement.querySelector('.cards').outerHTML = '<div class="empty">本週暫無新消息</div>';
+    return;
+  }
+  el.innerHTML = items.map(it => `
+    <div class="card" data-search="${(it.title+' '+it.source+' '+it.summary).toLowerCase()}">
+      <div class="meta">
+        <span class="source">${it.source}</span>
+        <span class="date">${it.date}</span>
+      </div>
+      <h3><a href="${it.url}" target="_blank" rel="noopener">${it.title}</a></h3>
+      <p>${it.summary}</p>
+    </div>
+  `).join('');
+}
+
+['block1','block2','block3'].forEach(renderBlock);
+
+const totalCount = Object.values(DATA).reduce((s,a)=>s+a.length,0);
+document.getElementById('countTag').textContent = `共 ${totalCount} 則`;
+
+document.getElementById('searchInput').addEventListener('input', (e)=>{
+  const q = e.target.value.trim().toLowerCase();
+  let visible = 0;
+  document.querySelectorAll('.card').forEach(card=>{
+    const match = card.dataset.search.includes(q);
+    card.style.display = match ? '' : 'none';
+    if(match) visible++;
+  });
+  document.getElementById('countTag').textContent = q ? `符合 ${visible} 則` : `共 ${totalCount} 則`;
+});
+</script>
+</body>
+</html>
